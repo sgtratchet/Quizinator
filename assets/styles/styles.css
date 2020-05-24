@@ -1,0 +1,13 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    --purple:rgb(69, 14, 94);
+    --light-purple:rgb(168, 72, 212);
+}
+body{
+    background:#ededed;
+    color: black;
+    display: flex;
+    font-family: Geneva, Verdana, Tahoma;
+}
