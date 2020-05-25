@@ -1,13 +1,22 @@
 var timerEl=document.getElementById("timer");
-var scoreEl=document.getElementById('scoring');
-var answerButton= document.getElementById('results')
-var start = prompt("push the button max");
-var answers= []
+var scoreEl=document.getElementById('scoring-container');
+var answerButton= document.getElementById('answers-container')
+var score= 0;
+
+var start = confirm("Push the button, Max!");
+    if (start){
+        quizStart();
+    }
+    else{
+        alert("Wrong button")
+        // return false;
+    }
+
 
 //array of questions
-var questions= [
+var questionEl= [
     {question: 'who created javascript?', 
-        answer:{
+        answers:{
             a:"Douglas Crockford",
             b: "Sheryl Sandberg",
             c: "Brendan Eich",
@@ -16,7 +25,7 @@ var questions= [
         correctAnswer:"c"
     },
     {question: 'what is a variable in javascript?', 
-        answer:{
+        answers:{
             a:"a method of storing information",
             b:"something to represent unknown information",
             c:"type of headache",
@@ -25,7 +34,7 @@ var questions= [
         correctAnswer:"a"
     },
     {question: 'which is NOT a way to store information using javascript?', 
-        answer:{
+        answers:{
             a: "Using an Array",
             b: "Local Storage",
             c: "Scarlett Johansson",
@@ -34,48 +43,41 @@ var questions= [
         correctAnswer:"c"
     },
     {question: 'which of the following will make something disapear?', 
-        answer:{
+        answers:{
             a: "window.prompt",
             b: "Gerard Butler",
             c: "function(erase)",
-            d: "(CSS) display:none. "
+            d: "(CSS) display:none."
         },
         correctAnswer:"d"
     }
+];
+function quizStart(){
+    timer();
+    //question loop
+    for (var i = 0; i < questionEl.length;i++){
+        var response=userInput;
 
-]
-//question loop
-for (var i = 0; i < questions.length;i++){
-    var response=
-    
-    if(response === correctAnswer)
-    {score++};
+        if(response === correctAnswer)
+        {score++};
+    }
+};
+
+function ShowResults(){
+    var scoreEl=document.createElement("div");
+    scoreEl.className ="results";
 }
-
-// var start=confirm(questions[i].question);
-//     (buildQuiz());
-
-
 
 
 function timer(){
     var timeLeft = 75;
     var timeInterval=setInterval(function(){
-        timerEl.createElement("div")
         timerEl.textContent = timeLeft;
         timeLeft--;
         if (timeLeft===0){
             timerEl.textContent="0";
             clearInterval(timeInterval);
-            // endQuiz();
         };
     }, 1000);
 };
-
-function showResults(){
-
-};
-// function endQuiz(){
-//     scoreEl.textContent = score;
-// }
 answerButton.addEventListener('click", showResults')

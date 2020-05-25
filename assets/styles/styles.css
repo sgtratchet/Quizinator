@@ -10,6 +10,7 @@ body{
     color: black;
     display: flex;
     font-family: Geneva, Verdana, Tahoma;
+    flex-wrap:wrap;
 }
 header{
     margin: 30px;
@@ -18,4 +19,15 @@ header{
     width: 100%;
     justify-content: space-between;
 
+}
+section{
+    width:100%;
+    padding: 20px;
+    display:flex;
+    flex-wrap:wrap;
+}
+section div{
+    flex-wrap:wrap;
+    width:100%;
+    text-align:center;
 }
