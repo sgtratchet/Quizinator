@@ -1,7 +1,13 @@
+var start = document.getElementById("start");
+var quiz = document.getElementById("question-container");
 var timerEl=document.getElementById("timer");
 var scoreEl=document.getElementById('scoring-container');
 var answerButton= document.getElementById('answers-container')
 var score= 0;
+var choiceA = document.getElementById("choiceA");
+var choiceB = document.getElementById("choiceB");
+var choiceC = document.getElementById("choiceC");
+var choiceD = document.getElementById("choiceD");
 
 var start = confirm("Push the button, Max!");
     if (start){
@@ -64,7 +70,7 @@ function quizStart(){
 };
 
 function ShowResults(){
-    var scoreEl=document.createElement("div");
+    var scoreEl=document.createElement("h4");
     scoreEl.className ="results";
 }
 

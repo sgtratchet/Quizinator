@@ -31,3 +31,6 @@ section div{
     width:100%;
     text-align:center;
 }
+#answers-container{
+    display: flexbox;
+}
