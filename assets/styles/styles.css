@@ -18,12 +18,16 @@ header{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    color:var(--purple);
 
 }
-section{
+.quiz{
     width:100%;
+    align-items:center;
     padding: 20px;
+    margin:0 40px;
     display:flex;
+    justify-content:center;
     flex-wrap:wrap;
 }
 section div{
@@ -32,5 +36,7 @@ section div{
     text-align:center;
 }
 #answers-container{
-    display: flexbox;
+    display: flex;
+    text-align:center;
+    justify-content: center;
 }

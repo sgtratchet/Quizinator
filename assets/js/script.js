@@ -8,6 +8,7 @@ var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
 var choiceD = document.getElementById("choiceD");
+var answerButton = document.getElementById('scoring-container')
 
 var start = confirm("Push the button, Max!");
     if (start){
@@ -15,56 +16,55 @@ var start = confirm("Push the button, Max!");
     }
     else{
         alert("Wrong button")
-        // return false;
-    }
+        start();
+    };
 
 
 //array of questions
 var questionEl= [
     {question: 'who created javascript?', 
-        answers:{
-            a:"Douglas Crockford",
-            b: "Sheryl Sandberg",
-            c: "Brendan Eich",
-            d: "Jennifer Anniston"
-        },
-        correctAnswer:"c"
+            choiceA:"Douglas Crockford",
+            choiceB: "Sheryl Sandberg",
+            choiceC: "Brendan Eich",
+            choiceD: "Jennifer Anniston",
+            correctAnswer:"choiceC"
     },
     {question: 'what is a variable in javascript?', 
-        answers:{
-            a:"a method of storing information",
-            b:"something to represent unknown information",
-            c:"type of headache",
-            d:"Eva Mendes"
-        },
-        correctAnswer:"a"
+            choiceA:"a method of storing information",
+            choiceB:"something to represent unknown information",
+            choiceC:"type of headache",
+            choiceD:"Eva Mendes",
+            correctAnswer:"choiceA"
     },
     {question: 'which is NOT a way to store information using javascript?', 
-        answers:{
-            a: "Using an Array",
-            b: "Local Storage",
-            c: "Scarlett Johansson",
-            d: "Session Storage"
-        },
-        correctAnswer:"c"
+            choiceA: "Using an Array",
+            choiceB: "Local Storage",
+            choiceC: "Scarlett Johansson",
+            choiceD: "Session Storage",
+            correctAnswer:"choiceC"
     },
     {question: 'which of the following will make something disapear?', 
-        answers:{
-            a: "window.prompt",
-            b: "Gerard Butler",
-            c: "function(erase)",
-            d: "(CSS) display:none."
-        },
-        correctAnswer:"d"
+            choiceA: "window.prompt",
+            choiceB: "Gerard Butler",
+            choiceC: "function(erase)",
+            choiceD: "(CSS) display:none.",
+            correctAnswer:"choiceD"
     }
 ];
+var questionIndex = 0;
+console.log(questionEl[0].question);
 function quizStart(){
-    timer();
+        timer();
     //question loop
-    for (var i = 0; i < questionEl.length;i++){
-        var response=userInput;
+    for (var i = 0; i <questionEl.length;i++){
+        var q= questionEl[questionIndex];
+        questionContainer.innerHTML = "<h2>" + questionEl+ "</h2>";
+        choiceA.innerHTML = q.choiceA;
+        choiceB.innerHTML = q.choiceB;
+        choiceC.innerHTML = q.choiceC;
+        choiceD.innerHTML = q.choiceD;
 
-        if(response === correctAnswer)
+        if(answerButton === q.correctAnswer)
         {score++};
     }
 };
@@ -72,7 +72,7 @@ function quizStart(){
 function ShowResults(){
     var scoreEl=document.createElement("h4");
     scoreEl.className ="results";
-}
+};
 
 
 function timer(){
@@ -86,4 +86,4 @@ function timer(){
         };
     }, 1000);
 };
-answerButton.addEventListener('click", showResults')
+answerButton.addEventListener('click", showResults');
