@@ -1,9 +1,9 @@
 var start = document.getElementById("start");
 var quiz = document.getElementById("question-container");
-var timerEl=document.getElementById("timer");
-var scoreEl=document.getElementById('scoring-container');
-var answerButton= document.getElementById('answers-container')
-var score= 0;
+var timerEl = document.getElementById("timer");
+var scoreEl = document.getElementById('scoring-container');
+var answerButton = document.getElementById('answers-container')
+var score = 0;
 var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
@@ -59,8 +59,9 @@ var start = confirm("Push the button, Max!");
         start();
     };
 
-var questionIndex = 0;
+
 console.log(questionEl[0].question);
+
 function quizStart(){
         timer();
     //question loop
@@ -77,7 +78,7 @@ function quizStart(){
     }
 };
 
-function ShowResults(){
+function showResults(){
     var scoreEl=document.createElement("h4");
     scoreEl.className ="results";
 };

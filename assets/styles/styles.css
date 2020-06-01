@@ -6,7 +6,7 @@
     --light-purple:rgb(168, 72, 212);
 }
 body{
-    background:#ededed;
+    background:white;
     color: black;
     display: flex;
     font-family: Geneva, Verdana, Tahoma;
@@ -19,7 +19,6 @@ header{
     width: 100%;
     justify-content: space-between;
     color:var(--purple);
-
 }
 .quiz{
     width:100%;
@@ -38,5 +37,22 @@ section div{
 #answers-container{
     display: flex;
     text-align:center;
-    justify-content: center;
+    flex-direction:column;
+    width: 25%;
+    padding: 25px;
+}
+.answers{
+    background-color:var(--purple);
+    height: 40px;
+    color:white;
+    border-radius: 15px;
+}
+.question{
+    font-size:24px;
+}
+#scoring-container{
+    border-top: 2px solid rgba(104,106,107,0.5)
+}
+.answers:hover{
+    background-color:var(--light-purple);
 }
