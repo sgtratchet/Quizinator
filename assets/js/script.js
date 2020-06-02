@@ -4,7 +4,7 @@ var scoreEl = document.getElementById('scoring-container');
 var score = 0;
 var questionIndex = 0;
 //array of questions
-var questionEl= [
+var questionArr= [
     {
         question: 'who created javascript?', 
         answers: { 
@@ -13,7 +13,7 @@ var questionEl= [
             choiceC: "Brendan Eich",
             choiceD: "Jennifer Anniston"
             },
-        correctAnswer: "choiceC"   
+        correctAnswer: "Brendan Eich"   
     },
         {question: 'what is a variable in javascript?', 
         answers: {
@@ -22,7 +22,7 @@ var questionEl= [
             choiceC:"type of headache",
             choiceD:"Eva Mendes",
         },
-        correctAnswer: "choiceA"
+        correctAnswer: "a method of storing information"
         
     },
         {question: 'which is NOT a way to store information using javascript?', 
@@ -32,7 +32,7 @@ var questionEl= [
             choiceC: "Scarlett Johansson",
             choiceD: "Session Storage",
         },
-        correctAnswer:"choiceC"
+        correctAnswer:"Scarlett Johansson"
     },
         {question: 'which of the following will make something disappear?', 
         answers: {      
@@ -41,9 +41,19 @@ var questionEl= [
             choiceC: "function(erase)",
             choiceD: "(CSS) display:none.",
         },
-        correctAnswer:"choiceD"
+        correctAnswer:"(CSS) display:none."
     }
 ];
+
+var answerA = questionArr[questionIndex].answers.choiceA;
+var answerB = questionArr[questionIndex].answers.choiceB;
+var answerC = questionArr[questionIndex].answers.choiceC;
+var answerD = questionArr[questionIndex].answers.choiceD;
+
+var a = document.getElementById("choiceA").addEventListener("click", ()=> auditAnswer(answerA));
+var b = document.getElementById("choiceB").addEventListener("click", ()=> auditAnswer(answerB));
+var c = document.getElementById("choiceC").addEventListener("click", ()=> auditAnswer(answerC));
+var d = document.getElementById("choiceD").addEventListener("click", ()=> auditAnswer(answerD));
 
 var start = confirm("Push the button, Max!");
     if (start){
@@ -54,32 +64,10 @@ var start = confirm("Push the button, Max!");
         start();
     };
 
-var response = function(){
-    //add id as variable
-    var selection;
-        switch(selection){
-            case a:
-                selection = choiceA;
-                auditAnswer(selection);
-                break;
-            case b:
-                selection = choiceB;
-                auditAnswer(selection);
-                break;
-            case c:
-                selection = choiceC;
-                auditAnswer(selection);
-                break;
-            case d:
-                selection = choiceD;
-                auditAnswer(selection);
-        }
-        console.log(selection);
-};
 
-var auditAnswer = function(selection){
-    var q = questionEl[questionIndex];
-    if(selection === q.correctAnswer){
+var auditAnswer = function(userSuppliedAnswer){
+    var correctAnswer = questionArr[questionIndex].correctAnswer;
+    if(userSuppliedAnswer === correctAnswer){
         score++;
         var score= document.createElement("h4");
         score.className = "results";
@@ -100,21 +88,26 @@ function quizStart(){
         timer();
 
     //question loop
-    for (var i = 0; i < questionEl.length;i++){
-        var q = questionEl[questionIndex];
-        quiz.innerHTML = "<h2>" + questionEl[questionIndex].question + "</h2>";
+    // for (var i = 0; i < questionArr.length;i++){
+        var q = questionArr[questionIndex];
+        quiz.innerHTML = "<h2>" + questionArr[questionIndex].question + "</h2>";
         choiceA.innerHTML = q.answers.choiceA;
         choiceB.innerHTML = q.answers.choiceB;
         choiceC.innerHTML = q.answers.choiceC;
         choiceD.innerHTML = q.answers.choiceD;
     }
        
-    console.log(questionEl[questionIndex].question);
-    };
+    console.log(questionArr[questionIndex].question);
+    // };
 
 function nextQuestion(){
     questionIndex++;
+    answerA = questionArr[questionIndex].answers.choiceA;
+    answerB = questionArr[questionIndex].answers.choiceB;
+    answerC = questionArr[questionIndex].answers.choiceC;
+    answerD = questionArr[questionIndex].answers.choiceD;
     quizStart();
+
 }
 
 function timer(){
@@ -129,7 +122,3 @@ function timer(){
     }, 1000);
 };
 
-var a = document.getElementById("choiceA").addEventListener("click", response);
-var b = document.getElementById("choiceB").addEventListener("click", response);
-var c = document.getElementById("choiceC").addEventListener("click", response);
-var d = document.getElementById("choiceD").addEventListener("click", response);
