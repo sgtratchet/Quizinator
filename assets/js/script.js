@@ -1,14 +1,8 @@
-var start = document.getElementById("start");
 var quiz = document.getElementById("question-container");
 var timerEl = document.getElementById("timer");
 var scoreEl = document.getElementById('scoring-container');
-var answerButton = document.getElementById('answers')
 var score = 0;
-var choiceA = document.getElementById("choiceA");
-var choiceB = document.getElementById("choiceB");
-var choiceC = document.getElementById("choiceC");
-var choiceD = document.getElementById("choiceD");
-var answerButton = document.getElementById('scoring-container')
+var questionIndex = 0;
 //array of questions
 var questionEl= [
     {
@@ -50,6 +44,7 @@ var questionEl= [
         correctAnswer:"choiceD"
     }
 ];
+
 var start = confirm("Push the button, Max!");
     if (start){
         quizStart();
@@ -59,40 +54,68 @@ var start = confirm("Push the button, Max!");
         start();
     };
 
+var response = function(){
+    //add id as variable
+    var selection;
+        switch(selection){
+            case a:
+                selection = choiceA;
+                auditAnswer(selection);
+                break;
+            case b:
+                selection = choiceB;
+                auditAnswer(selection);
+                break;
+            case c:
+                selection = choiceC;
+                auditAnswer(selection);
+                break;
+            case d:
+                selection = choiceD;
+                auditAnswer(selection);
+        }
+        console.log(selection);
+};
+
+var auditAnswer = function(selection){
+    var q = questionEl[questionIndex];
+    if(selection === q.correctAnswer){
+        score++;
+        var score= document.createElement("h4");
+        score.className = "results";
+        score.innerHTML = "Correct!";
+        scoreEl.appendChild(score)
+    }
+    else{
+        var score= document.createElement("h4");
+        score.className = "results";
+        score.innerHTML = "Wrong!";
+        scoreEl.appendChild(score)
+    }
+    nextQuestion();
+};
+
+
 function quizStart(){
         timer();
 
     //question loop
     for (var i = 0; i < questionEl.length;i++){
-        var q = questionEl[i];
-        quiz.innerHTML = "<h2>" + questionEl[i].question + "</h2>";
+        var q = questionEl[questionIndex];
+        quiz.innerHTML = "<h2>" + questionEl[questionIndex].question + "</h2>";
         choiceA.innerHTML = q.answers.choiceA;
         choiceB.innerHTML = q.answers.choiceB;
         choiceC.innerHTML = q.answers.choiceC;
         choiceD.innerHTML = q.answers.choiceD;
-
-        document.getElementById("choiceA").addEventListener("click", auditAnswer);
-        document.getElementById("choiceB").addEventListener("click", auditAnswer);
-        document.getElementById("choiceC").addEventListener("click", auditAnswer);
-        document.getElementById("choiceD").addEventListener("click", auditAnswer);
-
-        var auditAnswer = function(){
-            if(click === q.correctAnswer){
-                score++;
-                scoreEl.document.createElement("h4");
-                scoreEl.className = "results";
-                scoreEl.innerHTML = "Correct!";
-            
-            }
-            else{
-                scoreEl.document.createElement("h4");
-                scoreEl.className = "results";
-                scoreEl.innerHTML = "Wrong!";
-            }
-        }
-    console.log(questionEl[i].question);
     }
-};
+       
+    console.log(questionEl[questionIndex].question);
+    };
+
+function nextQuestion(){
+    questionIndex++;
+    quizStart();
+}
 
 function timer(){
     var timeLeft = 75;
@@ -106,3 +129,7 @@ function timer(){
     }, 1000);
 };
 
+var a = document.getElementById("choiceA").addEventListener("click", response);
+var b = document.getElementById("choiceB").addEventListener("click", response);
+var c = document.getElementById("choiceC").addEventListener("click", response);
+var d = document.getElementById("choiceD").addEventListener("click", response);
