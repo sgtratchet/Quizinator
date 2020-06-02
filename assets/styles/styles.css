@@ -51,7 +51,8 @@ section div{
     font-size:24px;
 }
 #scoring-container{
-    border-top: 2px solid rgba(104,106,107,0.5)
+    border-top: 2px solid rgba(104,106,107,0.5);
+    color: rgba(104, 106, 107, 0.7);
 }
 .answers:hover{
     background-color:var(--light-purple);

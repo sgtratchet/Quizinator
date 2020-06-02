@@ -2,7 +2,7 @@ var start = document.getElementById("start");
 var quiz = document.getElementById("question-container");
 var timerEl = document.getElementById("timer");
 var scoreEl = document.getElementById('scoring-container');
-var answerButton = document.getElementById('answers-container')
+var answerButton = document.getElementById('answers')
 var score = 0;
 var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
@@ -59,11 +59,9 @@ var start = confirm("Push the button, Max!");
         start();
     };
 
-
-console.log(questionEl[0].question);
-
 function quizStart(){
         timer();
+
     //question loop
     for (var i = 0; i < questionEl.length;i++){
         var q = questionEl[i];
@@ -73,20 +71,32 @@ function quizStart(){
         choiceC.innerHTML = q.answers.choiceC;
         choiceD.innerHTML = q.answers.choiceD;
 
-        if(answerButton === q.correctAnswer)
-        {score++};
+        document.getElementById("choiceA").addEventListener("click", auditAnswer);
+        document.getElementById("choiceB").addEventListener("click", auditAnswer);
+        document.getElementById("choiceC").addEventListener("click", auditAnswer);
+        document.getElementById("choiceD").addEventListener("click", auditAnswer);
+
+        var auditAnswer = function(){
+            if(click === q.correctAnswer){
+                score++;
+                scoreEl.document.createElement("h4");
+                scoreEl.className = "results";
+                scoreEl.innerHTML = "Correct!";
+            
+            }
+            else{
+                scoreEl.document.createElement("h4");
+                scoreEl.className = "results";
+                scoreEl.innerHTML = "Wrong!";
+            }
+        }
+    console.log(questionEl[i].question);
     }
 };
 
-function showResults(){
-    var scoreEl=document.createElement("h4");
-    scoreEl.className ="results";
-};
-
-
 function timer(){
     var timeLeft = 75;
-    var timeInterval=setInterval(function(){
+    var timeInterval = setInterval(function(){
         timerEl.textContent = timeLeft;
         timeLeft--;
         if (timeLeft===0){
@@ -96,4 +106,3 @@ function timer(){
     }, 1000);
 };
 
-answerButton.addEventListener("click", showResults);
